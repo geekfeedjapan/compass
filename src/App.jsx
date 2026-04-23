@@ -33,10 +33,6 @@ export default function CompassMockup() {
       fontFamily: '"Plus Jakarta Sans", "Noto Sans JP", sans-serif',
       background: '#FAFAF7'
     }}>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
       {/* Sidebar */}
       <aside className="w-60 flex-shrink-0 flex flex-col" style={{ background: '#0E1116', color: '#E5E5E0' }}>
         <div className="px-5 pt-6 pb-8">
