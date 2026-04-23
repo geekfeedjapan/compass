@@ -1,0 +1,1691 @@
+import React, { useState } from 'react';
+import {
+  LayoutDashboard, FolderKanban, Sparkles, FileSearch, FlaskConical, Activity,
+  Settings, Search, Bell, ChevronRight, Plus, MoreHorizontal,
+  AlertTriangle, CheckCircle2, Clock, FileText, Database, MessageSquare,
+  Shield, Zap, TrendingUp, ArrowUpRight, ArrowDownRight, Filter,
+  Download, BarChart3, Rocket, RefreshCw, Target, Tag, BookOpen,
+  Layers, GitBranch, Eye, ChevronDown, Circle, Bot, Phone, MessageCircle,
+  Globe, Link2, Volume2, Mic, X, Check, Folder, FolderOpen, Lock, Wand2,
+  Timer, FileWarning, Briefcase, GitMerge, Send, Cpu, Workflow, Play, Pause
+} from 'lucide-react';
+import {
+  RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  BarChart, Bar, LineChart, Line, ComposedChart
+} from 'recharts';
+
+export default function CompassMockup() {
+  const [activeView, setActiveView] = useState('dashboard');
+  const [activeProject, setActiveProject] = useState(0);
+  const [askOpen, setAskOpen] = useState(false);
+
+  const projects = [
+    { name: '損保カスタマーサポートAI', company: 'A損害保険株式会社', channel: '音声', stage: 'PoC', stageIdx: 3, readiness: 72, voiceReadiness: 64, chatReadiness: null, accuracy: 78.4, docs: 234, tests: 156, delta: +6.2, updated: '2時間前', owner: 'Y. Tanaka' },
+    { name: '通販コールセンター 一次対応AI', company: 'B通販株式会社', channel: 'ハイブリッド', stage: '改善', stageIdx: 1, readiness: 48, voiceReadiness: 42, chatReadiness: 55, accuracy: 62.1, docs: 89, tests: 40, delta: +12.0, updated: '昨日', owner: 'M. Sato' },
+    { name: '社内ITヘルプデスクAI', company: '社内利用', channel: 'チャット', stage: '本番', stageIdx: 4, readiness: 88, voiceReadiness: null, chatReadiness: 88, accuracy: 91.2, docs: 512, tests: 320, delta: +1.8, updated: '5分前', owner: 'T. Yoshida' },
+    { name: '銀行窓口問い合わせAI', company: 'C地方銀行', channel: '音声', stage: '評価', stageIdx: 0, readiness: 31, voiceReadiness: 24, chatReadiness: null, accuracy: null, docs: 145, tests: 0, delta: null, updated: '3日前', owner: 'K. Ito' },
+    { name: '電力会社 停電問い合わせAI', company: 'D電力', channel: 'ハイブリッド', stage: '運用', stageIdx: 5, readiness: 84, voiceReadiness: 81, chatReadiness: 87, accuracy: 89.5, docs: 198, tests: 220, delta: -0.4, updated: '1日前', owner: 'H. Mori' }
+  ];
+
+  return (
+    <div className="min-h-screen flex relative" style={{
+      fontFamily: '"Plus Jakarta Sans", "Noto Sans JP", sans-serif',
+      background: '#FAFAF7'
+    }}>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+      {/* Sidebar */}
+      <aside className="w-60 flex-shrink-0 flex flex-col" style={{ background: '#0E1116', color: '#E5E5E0' }}>
+        <div className="px-5 pt-6 pb-8">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-md flex items-center justify-center" style={{
+              background: 'linear-gradient(135deg, #E5E5E0 0%, #C2410C 100%)'
+            }}>
+              <div className="w-3 h-3 rounded-full" style={{ background: '#0E1116' }}></div>
+            </div>
+            <div>
+              <div className="text-[15px] font-bold tracking-tight">Compass</div>
+              <div className="text-[10px] uppercase tracking-widest" style={{ color: '#71717A' }}>by Geekfeed</div>
+            </div>
+          </div>
+        </div>
+
+        <nav className="flex-1 px-3 overflow-y-auto">
+          <div className="text-[10px] uppercase tracking-widest mb-2 px-2" style={{ color: '#52525B' }}>Workspace</div>
+          <SidebarItem icon={LayoutDashboard} label="ダッシュボード" id="dashboard" active={activeView} setActive={setActiveView} />
+          <SidebarItem icon={Briefcase} label="Executive View" id="exec" active={activeView} setActive={setActiveView} qs />
+          <SidebarItem icon={FolderKanban} label="プロジェクト" id="project" active={activeView} setActive={setActiveView} badge="5" />
+
+          <div className="text-[10px] uppercase tracking-widest mt-6 mb-2 px-2" style={{ color: '#52525B' }}>Lifecycle</div>
+          <SidebarItem icon={Sparkles} label="Assessment" id="assessment" active={activeView} setActive={setActiveView} />
+          <SidebarItem icon={Globe} label="Data Source" id="datasource" active={activeView} setActive={setActiveView} pulse />
+          <SidebarItem icon={FileSearch} label="Knowledge Builder" id="knowledge" active={activeView} setActive={setActiveView} />
+          <SidebarItem icon={FlaskConical} label="Test Manager" id="tests" active={activeView} setActive={setActiveView} />
+          <SidebarItem icon={Activity} label="Production Insight" id="production" active={activeView} setActive={setActiveView} />
+
+          <div className="text-[10px] uppercase tracking-widest mt-6 mb-2 px-2" style={{ color: '#52525B' }}>Operations</div>
+          <SidebarItem icon={Workflow} label="Automation" id="automation" active={activeView} setActive={setActiveView} qs />
+          <SidebarItem icon={Settings} label="設定" id="settings" active={activeView} setActive={setActiveView} />
+        </nav>
+
+        {/* Quick Suite badge */}
+        <div className="p-3 m-3 rounded-lg" style={{ background: '#1A1F26', border: '1px solid #27272A' }}>
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#10B981' }}></div>
+            <div className="text-[11px] font-medium" style={{ color: '#A1A1AA' }}>AWS Connected</div>
+          </div>
+          <div className="text-[10px] mb-2" style={{ color: '#52525B' }}>ap-northeast-1 · acct-7892</div>
+          <div className="pt-2 border-t flex items-center gap-1.5" style={{ borderColor: '#27272A' }}>
+            <div className="w-3.5 h-3.5 rounded-sm flex items-center justify-center" style={{ background: '#FF9900' }}>
+              <Zap size={9} style={{ color: '#0E1116' }} strokeWidth={3} />
+            </div>
+            <div className="text-[9.5px] leading-tight" style={{ color: '#71717A' }}>
+              Powered by<br/>
+              <span style={{ color: '#FF9900', fontWeight: 600 }}>Amazon Quick Suite</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      {/* Main */}
+      <main className="flex-1 flex flex-col min-w-0">
+        <header className="h-14 px-7 flex items-center justify-between border-b" style={{ borderColor: '#E7E5DF', background: '#FAFAF7' }}>
+          <div className="flex items-center gap-2 text-[13px]" style={{ color: '#52525B' }}>
+            <span>Geekfeed Workspace</span>
+            <ChevronRight size={14} />
+            <span style={{ color: '#18181B', fontWeight: 600 }}>{viewLabel(activeView)}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button onClick={() => setAskOpen(true)}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-md text-[12px] font-medium border transition-all"
+              style={{
+                borderColor: '#FF9900',
+                background: 'linear-gradient(to right, #FFFBEB, white)',
+                color: '#92400E'
+              }}>
+              <Sparkles size={12} style={{ color: '#FF9900' }} />
+              Ask Compass
+              <kbd className="text-[10px] px-1 py-0.5 rounded" style={{ background: 'white', color: '#A1A1AA', border: '1px solid #FEF3C7' }}>⌘J</kbd>
+            </button>
+            <div className="relative ml-2">
+              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: '#A1A1AA' }} />
+              <input
+                placeholder="検索"
+                className="w-48 pl-9 pr-3 py-1.5 text-[12px] rounded-md border outline-none"
+                style={{ borderColor: '#E7E5DF', background: 'white' }}
+              />
+            </div>
+            <button className="w-8 h-8 rounded-md flex items-center justify-center hover:bg-white relative" style={{ color: '#52525B' }}>
+              <Bell size={15} />
+              <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full" style={{ background: '#DC2626' }}></span>
+            </button>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-semibold text-white" style={{ background: '#1E1B4B' }}>
+              YT
+            </div>
+          </div>
+        </header>
+
+        <div className="flex-1 overflow-auto">
+          {activeView === 'dashboard' && <DashboardView projects={projects} setView={setActiveView} setProject={setActiveProject} />}
+          {activeView === 'exec' && <ExecutiveView />}
+          {activeView === 'project' && <ProjectView project={projects[activeProject]} setView={setActiveView} />}
+          {activeView === 'assessment' && <AssessmentView project={projects[activeProject]} />}
+          {activeView === 'datasource' && <DataSourceView project={projects[activeProject]} />}
+          {activeView === 'knowledge' && <KnowledgeView project={projects[activeProject]} />}
+          {activeView === 'tests' && <TestsView project={projects[activeProject]} />}
+          {activeView === 'production' && <ProductionView />}
+          {activeView === 'automation' && <AutomationView />}
+          {activeView === 'settings' && <PlaceholderView label="設定" />}
+        </div>
+      </main>
+
+      {/* Ask Compass slide-over */}
+      {askOpen && <AskCompassPanel onClose={() => setAskOpen(false)} />}
+    </div>
+  );
+}
+
+function viewLabel(v) {
+  return {
+    dashboard: 'ダッシュボード',
+    exec: 'Executive View',
+    project: 'プロジェクト詳細',
+    assessment: 'Assessment',
+    datasource: 'Data Source',
+    knowledge: 'Knowledge Builder',
+    tests: 'Test Manager',
+    production: 'Production Insight',
+    automation: 'Automation',
+    settings: '設定'
+  }[v] || '';
+}
+
+function SidebarItem({ icon: Icon, label, id, active, setActive, badge, pulse, qs }) {
+  const isActive = active === id;
+  return (
+    <button onClick={() => setActive(id)}
+      className="w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[13px] transition-all mb-0.5"
+      style={{
+        background: isActive ? '#1A1F26' : 'transparent',
+        color: isActive ? '#FAFAF7' : '#A1A1AA',
+        fontWeight: isActive ? 600 : 500
+      }}>
+      <Icon size={15} strokeWidth={isActive ? 2.2 : 1.8} />
+      <span className="flex-1 text-left">{label}</span>
+      {qs && <QSChip />}
+      {pulse && <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#C2410C' }}></span>}
+      {badge && (
+        <span className="text-[10px] px-1.5 py-0.5 rounded" style={{
+          background: isActive ? '#27272A' : 'transparent',
+          color: '#71717A',
+          border: !isActive ? '1px solid #27272A' : 'none'
+        }}>{badge}</span>
+      )}
+    </button>
+  );
+}
+
+function QSChip() {
+  return (
+    <span className="text-[8.5px] font-bold px-1 rounded" style={{
+      background: 'rgba(255, 153, 0, 0.15)',
+      color: '#FF9900',
+      letterSpacing: '0.05em'
+    }}>QS</span>
+  );
+}
+
+function PoweredBy({ component }) {
+  return (
+    <div className="flex items-center gap-1 text-[9.5px]" style={{ color: '#A1A1AA' }}>
+      <div className="w-2 h-2 rounded-sm" style={{ background: '#FF9900' }}></div>
+      Powered by <span style={{ color: '#92400E', fontWeight: 600 }}>Amazon {component}</span>
+    </div>
+  );
+}
+
+function ChannelBadge({ channel, size = 'sm' }) {
+  const config = {
+    '音声': { icon: Phone, bg: '#FEF3C7', fg: '#92400E', label: '音声' },
+    'チャット': { icon: MessageCircle, bg: '#DBEAFE', fg: '#1E40AF', label: 'チャット' },
+    'ハイブリッド': { icon: Layers, bg: '#F3E8FF', fg: '#6B21A8', label: 'ハイブリッド' }
+  }[channel] || { icon: MessageCircle, bg: '#F4F4F0', fg: '#52525B', label: channel };
+  const Icon = config.icon;
+  const px = size === 'lg' ? 'px-2.5 py-1' : 'px-1.5 py-0.5';
+  const fs = size === 'lg' ? 'text-[11px]' : 'text-[10px]';
+  return (
+    <span className={`${fs} ${px} font-semibold rounded inline-flex items-center gap-1`} style={{ background: config.bg, color: config.fg }}>
+      <Icon size={size === 'lg' ? 11 : 9} /> {config.label}
+    </span>
+  );
+}
+
+function StageBadge({ stage }) {
+  const colors = {
+    '評価': { bg: '#FEF3C7', fg: '#92400E' },
+    '改善': { bg: '#DBEAFE', fg: '#1E40AF' },
+    'PoC': { bg: '#E0E7FF', fg: '#3730A3' },
+    '本番': { bg: '#D1FAE5', fg: '#065F46' },
+    '運用': { bg: '#F3F4F6', fg: '#374151' }
+  };
+  const c = colors[stage] || colors['評価'];
+  return <span className="text-[10.5px] font-semibold px-2 py-0.5 rounded" style={{ background: c.bg, color: c.fg }}>{stage}</span>;
+}
+
+function scoreColor(s) {
+  if (s >= 80) return '#059669';
+  if (s >= 60) return '#1E1B4B';
+  if (s >= 40) return '#C2410C';
+  return '#DC2626';
+}
+
+/* ========== ASK COMPASS (Quick Research) ========== */
+function AskCompassPanel({ onClose }) {
+  const [step, setStep] = useState(0);
+  const examples = [
+    '先週から音声尺超過が増えている原因は？',
+    '損保案件のReadinessスコアを業界平均と比較して',
+    '本番で失敗が多いカテゴリは？',
+    'PoC段階で精度80%超えたプロジェクトの共通点',
+  ];
+
+  return (
+    <div className="fixed inset-0 z-50 flex justify-end" style={{ background: 'rgba(14, 17, 22, 0.4)' }} onClick={onClose}>
+      <div className="w-[480px] h-full bg-white shadow-2xl flex flex-col" onClick={e => e.stopPropagation()}>
+        <div className="px-5 py-4 border-b flex items-center justify-between" style={{ borderColor: '#E7E5DF' }}>
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-md flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #FF9900, #C2410C)' }}>
+              <Sparkles size={14} style={{ color: 'white' }} />
+            </div>
+            <div>
+              <div className="text-[13px] font-bold">Ask Compass</div>
+              <PoweredBy component="Quick Research" />
+            </div>
+          </div>
+          <button onClick={onClose} className="text-[#71717A]"><X size={18} /></button>
+        </div>
+
+        <div className="flex-1 overflow-auto p-5">
+          {step === 0 && (
+            <>
+              <div className="text-[12.5px] mb-4" style={{ color: '#52525B' }}>
+                Compass内のすべてのデータに自然言語で質問できます。<br/>
+                プロジェクト・ドキュメント・テスト・本番ログを横断して回答します。
+              </div>
+              <div className="text-[10.5px] uppercase tracking-widest font-semibold mb-2" style={{ color: '#A1A1AA' }}>例</div>
+              <div className="space-y-2">
+                {examples.map((q, i) => (
+                  <button key={i} onClick={() => setStep(1)}
+                    className="w-full text-left px-3 py-2.5 rounded-md text-[12px] border hover:border-[#FF9900] transition-all"
+                    style={{ borderColor: '#E7E5DF', color: '#27272A' }}>
+                    {q}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+
+          {step === 1 && (
+            <>
+              <div className="px-3 py-2 rounded-md mb-4 flex items-center gap-2" style={{ background: '#F4F4F0' }}>
+                <div className="w-6 h-6 rounded-full bg-[#1E1B4B] text-white text-[10px] flex items-center justify-center font-semibold">YT</div>
+                <span className="text-[12px]">先週から音声尺超過が増えている原因は？</span>
+              </div>
+
+              <div className="flex items-start gap-2.5 mb-4">
+                <div className="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #FF9900, #C2410C)' }}>
+                  <Sparkles size={13} style={{ color: 'white' }} />
+                </div>
+                <div className="flex-1">
+                  <div className="text-[12px] leading-relaxed mb-3" style={{ color: '#27272A' }}>
+                    過去7日間の本番ログを分析しました。<br/>
+                    音声尺超過は<span className="font-semibold">14件→32件</span>に増加（128%）。主な原因は3点です：
+                  </div>
+
+                  <div className="space-y-2 mb-3">
+                    <div className="px-3 py-2 rounded border" style={{ borderColor: '#FEE2E2', background: '#FEF2F2' }}>
+                      <div className="text-[11px] font-semibold mb-0.5" style={{ color: '#991B1B' }}>1. 4/18のKB更新で長文FAQが追加</div>
+                      <div className="text-[10.5px]" style={{ color: '#52525B' }}>新規追加された8件のFAQの平均文字数が180字（既存平均: 90字）</div>
+                    </div>
+                    <div className="px-3 py-2 rounded border" style={{ borderColor: '#FEF3C7', background: '#FFFBEB' }}>
+                      <div className="text-[11px] font-semibold mb-0.5" style={{ color: '#92400E' }}>2. 「補償範囲」カテゴリの問い合わせ増加</div>
+                      <div className="text-[10.5px]" style={{ color: '#52525B' }}>該当カテゴリは元々長文回答が多く、問い合わせ増加が直接尺超過に</div>
+                    </div>
+                    <div className="px-3 py-2 rounded border" style={{ borderColor: '#FEF3C7', background: '#FFFBEB' }}>
+                      <div className="text-[11px] font-semibold mb-0.5" style={{ color: '#92400E' }}>3. Lex V2のレスポンス遅延</div>
+                      <div className="text-[10.5px]" style={{ color: '#52525B' }}>4/20以降、平均応答時間が0.8秒→1.4秒に。コールドスタート再発の可能性</div>
+                    </div>
+                  </div>
+
+                  <div className="text-[11px] mb-2 font-semibold" style={{ color: '#27272A' }}>推奨アクション</div>
+                  <div className="space-y-1.5 text-[11px]">
+                    <div className="flex items-start gap-1.5"><Check size={11} className="mt-0.5" style={{ color: '#059669' }} /><span>該当8件のFAQをVoice Lintでリライト（推定3時間）</span></div>
+                    <div className="flex items-start gap-1.5"><Check size={11} className="mt-0.5" style={{ color: '#059669' }} /><span>Lex Warmupスケジュールの実行頻度を確認</span></div>
+                  </div>
+
+                  <div className="mt-3 pt-3 border-t flex items-center gap-2 text-[10px]" style={{ borderColor: '#F4F4F0', color: '#A1A1AA' }}>
+                    <span>参照ソース:</span>
+                    <span className="px-1.5 py-0.5 rounded" style={{ background: '#F4F4F0' }}>本番ログ (7日)</span>
+                    <span className="px-1.5 py-0.5 rounded" style={{ background: '#F4F4F0' }}>KBバージョン履歴</span>
+                    <span className="px-1.5 py-0.5 rounded" style={{ background: '#F4F4F0' }}>Lexメトリクス</span>
+                  </div>
+                </div>
+              </div>
+
+              <button onClick={() => setStep(0)} className="text-[11px] underline" style={{ color: '#71717A' }}>← 別の質問</button>
+            </>
+          )}
+        </div>
+
+        <div className="p-4 border-t" style={{ borderColor: '#E7E5DF' }}>
+          <div className="flex items-center gap-2 px-3 py-2 rounded-md border" style={{ borderColor: '#E7E5DF' }}>
+            <input placeholder="質問を入力..." className="flex-1 outline-none text-[12px] bg-transparent" />
+            <button className="text-white p-1 rounded" style={{ background: '#FF9900' }}><Send size={11} /></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ========== DASHBOARD ========== */
+function DashboardView({ projects, setView, setProject }) {
+  const activityData = [
+    { d: '4/16', score: 64 }, { d: '4/17', score: 66 }, { d: '4/18', score: 65 },
+    { d: '4/19', score: 69 }, { d: '4/20', score: 71 }, { d: '4/21', score: 73 }, { d: '4/22', score: 75 }
+  ];
+
+  return (
+    <div className="px-7 py-7 max-w-[1400px]">
+      <div className="flex items-end justify-between mb-7">
+        <div>
+          <div className="text-[11px] uppercase tracking-widest mb-1" style={{ color: '#A1A1AA' }}>Wednesday, April 23</div>
+          <h1 className="text-[28px] leading-tight tracking-tight" style={{ fontFamily: '"Instrument Serif", serif', fontWeight: 400 }}>
+            おかえりなさい、吉田さん
+          </h1>
+          <p className="text-[13px] mt-1" style={{ color: '#52525B' }}>5件のアクティブプロジェクト · 改善提案 12件待機中 · FAQドラフト 8件レビュー待ち</p>
+        </div>
+        <button className="flex items-center gap-2 px-3.5 py-2 rounded-md text-[12.5px] font-medium text-white" style={{ background: '#1E1B4B' }}>
+          <Plus size={14} /> 新規プロジェクト
+        </button>
+      </div>
+
+      <div className="grid grid-cols-4 gap-4 mb-7">
+        <KPICard label="平均 Readiness Score" value="64.6" delta={+5.2} hint="先週比" />
+        <KPICard label="ドキュメント総数" value="1,178" delta={+143} hint="今週追加" />
+        <KPICard label="テスト合格率" value="82.3%" delta={+2.1} hint="先週比" suffix="" />
+        <KPICard label="本番アラート" value="3" delta={-2} hint="昨日比" inverse />
+      </div>
+
+      <div className="grid grid-cols-3 gap-4 mb-7">
+        <div className="col-span-2 bg-white rounded-lg p-5 border" style={{ borderColor: '#E7E5DF' }}>
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <div className="text-[12.5px] font-semibold mb-0.5">ポートフォリオ Readiness推移</div>
+              <PoweredBy component="Quick Sight" />
+            </div>
+            <div className="flex gap-1 text-[11px]">
+              {['7d', '30d', '90d'].map((p, i) => (
+                <button key={p} className="px-2 py-0.5 rounded" style={{
+                  background: i === 0 ? '#F4F4F0' : 'transparent',
+                  color: i === 0 ? '#18181B' : '#71717A',
+                  fontWeight: i === 0 ? 600 : 400
+                }}>{p}</button>
+              ))}
+            </div>
+          </div>
+          <ResponsiveContainer width="100%" height={180}>
+            <AreaChart data={activityData}>
+              <defs>
+                <linearGradient id="scoreGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#1E1B4B" stopOpacity={0.18} />
+                  <stop offset="100%" stopColor="#1E1B4B" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="2 4" stroke="#E7E5DF" vertical={false} />
+              <XAxis dataKey="d" tick={{ fontSize: 10, fill: '#A1A1AA' }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 10, fill: '#A1A1AA' }} axisLine={false} tickLine={false} domain={[55, 80]} />
+              <Tooltip contentStyle={{ fontSize: 11, border: '1px solid #E7E5DF', borderRadius: 6 }} />
+              <Area type="monotone" dataKey="score" stroke="#1E1B4B" strokeWidth={2} fill="url(#scoreGrad)" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className="bg-white rounded-lg p-5 border" style={{ borderColor: '#E7E5DF' }}>
+          <div className="flex items-center justify-between mb-4">
+            <div className="text-[12.5px] font-semibold">最近のアクティビティ</div>
+            <PoweredBy component="Quick Index" />
+          </div>
+          <div className="space-y-3.5">
+            <ActivityItem dot="#C2410C" text="損保サポートAI: 音声尺超過 14件 検出" time="10分前" />
+            <ActivityItem dot="#10B981" text="銀行窓口AI: corp-site.jp クロール完了（48ページ）" time="3分前" />
+            <ActivityItem dot="#1E1B4B" text="通販コールセンター: FAQドラフト 23件 生成" time="1時間前" />
+            <ActivityItem dot="#FF9900" text="Quick Flow: 週次精度レポート 自動配信完了" time="昨日" />
+            <ActivityItem dot="#71717A" text="電力会社AI: 本番デプロイ完了 v2.3.1" time="2日前" />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-lg border" style={{ borderColor: '#E7E5DF' }}>
+        <div className="px-5 py-3.5 flex items-center justify-between border-b" style={{ borderColor: '#E7E5DF' }}>
+          <div className="text-[12.5px] font-semibold">プロジェクト一覧</div>
+          <div className="flex items-center gap-2">
+            <button className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] rounded-md border" style={{ borderColor: '#E7E5DF', color: '#52525B' }}>
+              <Filter size={11} /> フィルタ
+            </button>
+            <button className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] rounded-md border" style={{ borderColor: '#E7E5DF', color: '#52525B' }}>
+              <Download size={11} /> エクスポート
+            </button>
+          </div>
+        </div>
+        <table className="w-full">
+          <thead>
+            <tr className="text-[10.5px] uppercase tracking-wider" style={{ color: '#A1A1AA' }}>
+              <th className="text-left font-medium px-5 py-2.5">プロジェクト</th>
+              <th className="text-left font-medium py-2.5">チャネル</th>
+              <th className="text-left font-medium py-2.5">フェーズ</th>
+              <th className="text-left font-medium py-2.5">Voice / Chat</th>
+              <th className="text-left font-medium py-2.5">精度</th>
+              <th className="text-right font-medium py-2.5 px-5">更新</th>
+            </tr>
+          </thead>
+          <tbody>
+            {projects.map((p, i) => (
+              <tr key={i} onClick={() => { setProject(i); setView('project'); }}
+                  className="border-t cursor-pointer hover:bg-[#FAFAF7]" style={{ borderColor: '#F4F4F0' }}>
+                <td className="px-5 py-3.5">
+                  <div className="text-[12.5px] font-semibold">{p.name}</div>
+                  <div className="text-[11px]" style={{ color: '#71717A' }}>{p.company}</div>
+                </td>
+                <td className="py-3.5"><ChannelBadge channel={p.channel} /></td>
+                <td className="py-3.5"><StageBadge stage={p.stage} /></td>
+                <td className="py-3.5"><DualScore voiceScore={p.voiceReadiness} chatScore={p.chatReadiness} /></td>
+                <td className="py-3.5 text-[12px]">
+                  {p.accuracy ? (
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-mono" style={{ fontFamily: '"JetBrains Mono", monospace' }}>{p.accuracy.toFixed(1)}%</span>
+                      {p.delta !== null && (
+                        <span className="text-[10.5px] flex items-center" style={{ color: p.delta > 0 ? '#059669' : '#DC2626' }}>
+                          {p.delta > 0 ? <ArrowUpRight size={10} /> : <ArrowDownRight size={10} />}
+                          {Math.abs(p.delta).toFixed(1)}
+                        </span>
+                      )}
+                    </div>
+                  ) : <span style={{ color: '#A1A1AA' }}>—</span>}
+                </td>
+                <td className="py-3.5 px-5 text-right text-[11px]" style={{ color: '#71717A' }}>{p.updated}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function DualScore({ voiceScore, chatScore }) {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
+        <Phone size={9} style={{ color: voiceScore !== null ? '#92400E' : '#D4D4D8' }} />
+        <span className="text-[11px] font-mono w-6 text-right" style={{
+          fontFamily: '"JetBrains Mono", monospace',
+          color: voiceScore !== null ? scoreColor(voiceScore) : '#D4D4D8'
+        }}>{voiceScore !== null ? voiceScore : '—'}</span>
+      </div>
+      <div className="w-px h-3" style={{ background: '#E7E5DF' }}></div>
+      <div className="flex items-center gap-1">
+        <MessageCircle size={9} style={{ color: chatScore !== null ? '#1E40AF' : '#D4D4D8' }} />
+        <span className="text-[11px] font-mono w-6 text-right" style={{
+          fontFamily: '"JetBrains Mono", monospace',
+          color: chatScore !== null ? scoreColor(chatScore) : '#D4D4D8'
+        }}>{chatScore !== null ? chatScore : '—'}</span>
+      </div>
+    </div>
+  );
+}
+
+function KPICard({ label, value, delta, hint, suffix = '', inverse = false }) {
+  const positive = inverse ? delta < 0 : delta > 0;
+  return (
+    <div className="bg-white rounded-lg p-5 border" style={{ borderColor: '#E7E5DF' }}>
+      <div className="text-[11px] mb-2" style={{ color: '#71717A' }}>{label}</div>
+      <div className="flex items-baseline gap-1.5">
+        <span className="text-[26px] font-bold tracking-tight">{value}</span>
+        <span className="text-[13px]" style={{ color: '#A1A1AA' }}>{suffix}</span>
+      </div>
+      <div className="flex items-center gap-1 mt-1">
+        <span className="text-[11px] font-medium flex items-center gap-0.5" style={{ color: positive ? '#059669' : '#DC2626' }}>
+          {positive ? <ArrowUpRight size={11} /> : <ArrowDownRight size={11} />}
+          {Math.abs(delta)}
+        </span>
+        <span className="text-[11px]" style={{ color: '#A1A1AA' }}>{hint}</span>
+      </div>
+    </div>
+  );
+}
+
+function ActivityItem({ dot, text, time }) {
+  return (
+    <div className="flex items-start gap-2.5">
+      <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: dot }} />
+      <div className="flex-1 min-w-0">
+        <div className="text-[11.5px] leading-relaxed" style={{ color: '#27272A' }}>{text}</div>
+        <div className="text-[10.5px] mt-0.5" style={{ color: '#A1A1AA' }}>{time}</div>
+      </div>
+    </div>
+  );
+}
+
+/* ========== EXECUTIVE VIEW (Quick Sight) ========== */
+function ExecutiveView() {
+  const roiData = [
+    { m: '11月', cost: 320, savings: 0 }, { m: '12月', cost: 280, savings: 80 },
+    { m: '1月', cost: 240, savings: 180 }, { m: '2月', cost: 220, savings: 290 },
+    { m: '3月', cost: 200, savings: 410 }, { m: '4月', cost: 180, savings: 540 }
+  ];
+
+  const benchmark = [
+    { cat: 'Readiness', us: 72, industry: 58 },
+    { cat: 'Accuracy', us: 78, industry: 65 },
+    { cat: 'Resolution', us: 76, industry: 62 },
+    { cat: 'CSAT', us: 4.2, industry: 3.6 }
+  ];
+
+  return (
+    <div className="px-7 py-7 max-w-[1400px]">
+      <div className="flex items-end justify-between mb-2">
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[11px] uppercase tracking-widest" style={{ color: '#A1A1AA' }}>Executive View</span>
+            <PoweredBy component="Quick Sight" />
+          </div>
+          <h1 className="text-[28px] tracking-tight" style={{ fontFamily: '"Instrument Serif", serif', fontWeight: 400 }}>
+            AI投資 経営ダッシュボード
+          </h1>
+          <p className="text-[13px] mt-1" style={{ color: '#52525B' }}>CxO向け · 月次更新 · 業界ベンチマーク含む</p>
+        </div>
+        <div className="flex gap-2">
+          <button className="px-3 py-1.5 rounded-md text-[12px] border flex items-center gap-1.5" style={{ borderColor: '#E7E5DF' }}>
+            <Download size={12} /> PDF出力
+          </button>
+          <button className="px-3 py-1.5 rounded-md text-[12px] text-white flex items-center gap-1.5" style={{ background: '#1E1B4B' }}>
+            <Send size={12} /> 役員に共有
+          </button>
+        </div>
+      </div>
+
+      {/* Hero metrics */}
+      <div className="grid grid-cols-4 gap-4 my-7">
+        <BigMetric label="累計コスト削減" value="¥540" unit="万" delta="+24% MoM" color="#059669" />
+        <BigMetric label="自動応答率" value="78" unit="%" delta="+12pt YoY" color="#1E1B4B" />
+        <BigMetric label="平均処理時間" value="-43" unit="%" delta="vs 人手" color="#1E1B4B" />
+        <BigMetric label="ROI予測" value="2.4" unit="年" delta="投資回収" color="#C2410C" />
+      </div>
+
+      <div className="grid grid-cols-2 gap-5 mb-5">
+        {/* ROI chart */}
+        <div className="bg-white rounded-lg p-5 border" style={{ borderColor: '#E7E5DF' }}>
+          <div className="flex items-start justify-between mb-3">
+            <div>
+              <div className="text-[12.5px] font-semibold">運用コスト vs 削減効果</div>
+              <div className="text-[10.5px]" style={{ color: '#71717A' }}>単位: 万円 · 全プロジェクト合計</div>
+            </div>
+          </div>
+          <ResponsiveContainer width="100%" height={220}>
+            <ComposedChart data={roiData}>
+              <CartesianGrid strokeDasharray="2 4" stroke="#E7E5DF" vertical={false} />
+              <XAxis dataKey="m" tick={{ fontSize: 10, fill: '#71717A' }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 10, fill: '#71717A' }} axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={{ fontSize: 11, border: '1px solid #E7E5DF', borderRadius: 6 }} />
+              <Bar dataKey="cost" fill="#E7E5DF" name="運用コスト" radius={[3, 3, 0, 0]} />
+              <Line type="monotone" dataKey="savings" stroke="#059669" strokeWidth={2.5} name="累計削減" dot={{ r: 3, fill: '#059669' }} />
+            </ComposedChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Industry benchmark */}
+        <div className="bg-white rounded-lg p-5 border" style={{ borderColor: '#E7E5DF' }}>
+          <div className="flex items-start justify-between mb-3">
+            <div>
+              <div className="text-[12.5px] font-semibold">業界ベンチマーク比較</div>
+              <div className="text-[10.5px]" style={{ color: '#71717A' }}>金融業界 平均 vs 当社</div>
+            </div>
+            <span className="text-[10px] px-2 py-0.5 rounded font-semibold" style={{ background: '#D1FAE5', color: '#065F46' }}>業界平均超</span>
+          </div>
+          <ResponsiveContainer width="100%" height={220}>
+            <BarChart data={benchmark} layout="vertical">
+              <CartesianGrid strokeDasharray="2 4" stroke="#E7E5DF" horizontal={false} />
+              <XAxis type="number" tick={{ fontSize: 10, fill: '#71717A' }} axisLine={false} tickLine={false} />
+              <YAxis dataKey="cat" type="category" tick={{ fontSize: 10, fill: '#27272A' }} axisLine={false} tickLine={false} width={70} />
+              <Tooltip contentStyle={{ fontSize: 11, border: '1px solid #E7E5DF', borderRadius: 6 }} />
+              <Bar dataKey="industry" fill="#E7E5DF" name="業界平均" radius={[0, 3, 3, 0]} />
+              <Bar dataKey="us" fill="#1E1B4B" name="当社" radius={[0, 3, 3, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Strategic insights */}
+      <div className="bg-white rounded-lg p-5 border" style={{ borderColor: '#E7E5DF' }}>
+        <div className="flex items-center gap-2 mb-4">
+          <Sparkles size={14} style={{ color: '#FF9900' }} />
+          <div className="text-[12.5px] font-semibold">戦略的インサイト</div>
+          <PoweredBy component="Quick Research" />
+        </div>
+        <div className="grid grid-cols-3 gap-4">
+          <InsightCard
+            tag="機会"
+            tagColor="#059669"
+            title="社内ITヘルプデスクAIの横展開が有望"
+            desc="精度91.2%で安定稼働中。同モデルを総務・人事に適用すれば年間1,800万円の追加削減が見込める"
+          />
+          <InsightCard
+            tag="リスク"
+            tagColor="#DC2626"
+            title="銀行窓口AIのRediness停滞"
+            desc="3週間スコア横ばい。インプット未整備が原因。このままだとPoC開始遅延、年度内本番化が困難に"
+          />
+          <InsightCard
+            tag="アクション"
+            tagColor="#C2410C"
+            title="音声尺超過の全社的増加"
+            desc="3プロジェクトで尺超過が発生。Voice Lintワークフロー（Quick Flows）の自動実行を推奨"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BigMetric({ label, value, unit, delta, color }) {
+  return (
+    <div className="bg-white rounded-lg p-5 border" style={{ borderColor: '#E7E5DF' }}>
+      <div className="text-[11px] mb-2" style={{ color: '#71717A' }}>{label}</div>
+      <div className="flex items-baseline gap-1">
+        <span style={{ fontFamily: '"Instrument Serif", serif', fontSize: 44, lineHeight: 1, color }}>{value}</span>
+        <span className="text-[16px]" style={{ color: '#A1A1AA' }}>{unit}</span>
+      </div>
+      <div className="text-[11px] mt-2" style={{ color: '#52525B' }}>{delta}</div>
+    </div>
+  );
+}
+
+function InsightCard({ tag, tagColor, title, desc }) {
+  return (
+    <div className="p-4 rounded-md border" style={{ borderColor: '#E7E5DF', background: '#FAFAF7' }}>
+      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded" style={{ background: `${tagColor}15`, color: tagColor }}>{tag}</span>
+      <div className="text-[12.5px] font-semibold mt-2 mb-1.5">{title}</div>
+      <div className="text-[11px] leading-relaxed" style={{ color: '#52525B' }}>{desc}</div>
+    </div>
+  );
+}
+
+/* ========== AUTOMATION (Quick Flows) ========== */
+function AutomationView() {
+  const flows = [
+    { name: '週次精度レポート 自動配信', trigger: '毎週月曜 9:00', actions: ['Quick Sight集計', 'PDF生成', 'Email送信'], status: 'active', runs: 12, success: 100 },
+    { name: 'KB更新 → 自動回帰テスト', trigger: 'Bedrock KB更新検知', actions: ['Test実行', '精度比較', 'Slack通知'], status: 'active', runs: 87, success: 98.9 },
+    { name: '低スコア回答 → 改善バックログ自動生成', trigger: '本番ログ スコア<50', actions: ['類似グルーピング', 'バックログ追加', '担当割当'], status: 'active', runs: 234, success: 95.2 },
+    { name: 'クロール元定期再診断', trigger: '毎月1日', actions: ['全URL診断', '差分検出', 'Notion更新'], status: 'active', runs: 4, success: 100 },
+    { name: 'Salesforceケース → 改善Issue連携', trigger: 'SFケース新規作成', actions: ['カテゴリ分類', 'バックログ追加'], status: 'paused', runs: 56, success: 92.8 },
+    { name: '音声尺超過 → 自動リライト提案', trigger: 'Test Manager Fail検知', actions: ['Bedrock呼出', 'Voice Lint実行', 'PR作成'], status: 'draft', runs: 0, success: null }
+  ];
+
+  return (
+    <div className="px-7 py-7 max-w-[1400px]">
+      <div className="flex items-end justify-between mb-7">
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[11px] uppercase tracking-widest" style={{ color: '#A1A1AA' }}>Operations</span>
+            <PoweredBy component="Quick Flows" />
+          </div>
+          <h1 className="text-[26px] tracking-tight" style={{ fontFamily: '"Instrument Serif", serif' }}>Automation</h1>
+          <p className="text-[13px] mt-1" style={{ color: '#52525B' }}>ライフサイクル全体の運用自動化。トリガー → アクションをノーコードで構築</p>
+        </div>
+        <button className="flex items-center gap-2 px-3.5 py-2 rounded-md text-[12.5px] font-medium text-white" style={{ background: '#1E1B4B' }}>
+          <Plus size={14} /> 新規ワークフロー
+        </button>
+      </div>
+
+      <div className="grid grid-cols-4 gap-4 mb-5">
+        <KPICard label="アクティブ" value="4" delta={+1} hint="今月" />
+        <KPICard label="今月の実行数" value="393" delta={+58} hint="vs 先月" />
+        <KPICard label="平均成功率" value="97.3%" delta={+0.8} hint="改善傾向" suffix="" />
+        <KPICard label="削減工数(推定)" value="86h" delta={+22} hint="今月" suffix="" />
+      </div>
+
+      <div className="bg-white rounded-lg border" style={{ borderColor: '#E7E5DF' }}>
+        <div className="px-5 py-3 border-b text-[12px] font-semibold" style={{ borderColor: '#E7E5DF' }}>
+          ワークフロー一覧 · 6件
+        </div>
+        {flows.map((f, i) => (
+          <div key={i} className="px-5 py-4 border-t" style={{ borderColor: '#F4F4F0' }}>
+            <div className="flex items-start gap-4">
+              <div className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0" style={{
+                background: f.status === 'active' ? '#D1FAE5' : f.status === 'paused' ? '#FEF3C7' : '#F4F4F0'
+              }}>
+                {f.status === 'active' ? <Play size={14} style={{ color: '#065F46' }} /> :
+                 f.status === 'paused' ? <Pause size={14} style={{ color: '#92400E' }} /> :
+                 <Workflow size={14} style={{ color: '#71717A' }} />}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="text-[13px] font-semibold">{f.name}</div>
+                  <FlowStatusBadge status={f.status} />
+                </div>
+                <div className="flex items-center gap-2 text-[11px] mb-2" style={{ color: '#71717A' }}>
+                  <Clock size={11} />
+                  <span>トリガー: {f.trigger}</span>
+                </div>
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  {f.actions.map((a, j) => (
+                    <React.Fragment key={j}>
+                      <span className="text-[10.5px] px-2 py-0.5 rounded font-mono" style={{
+                        fontFamily: '"JetBrains Mono", monospace',
+                        background: '#F4F4F0',
+                        color: '#27272A'
+                      }}>{a}</span>
+                      {j < f.actions.length - 1 && <ChevronRight size={10} style={{ color: '#A1A1AA' }} />}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="text-[10.5px]" style={{ color: '#71717A' }}>実行回数</div>
+                <div className="text-[16px] font-bold tracking-tight">{f.runs}</div>
+                {f.success !== null && (
+                  <div className="text-[10.5px] mt-0.5" style={{ color: f.success >= 95 ? '#059669' : '#C2410C' }}>
+                    成功率 {f.success}%
+                  </div>
+                )}
+              </div>
+              <button style={{ color: '#71717A' }}><MoreHorizontal size={14} /></button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function FlowStatusBadge({ status }) {
+  const config = {
+    active: { bg: '#D1FAE5', fg: '#065F46', label: '稼働中' },
+    paused: { bg: '#FEF3C7', fg: '#92400E', label: '一時停止' },
+    draft: { bg: '#F4F4F0', fg: '#52525B', label: '下書き' }
+  }[status];
+  return <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded" style={{ background: config.bg, color: config.fg }}>{config.label}</span>;
+}
+
+/* ========== PROJECT DETAIL ========== */
+function ProjectView({ project, setView }) {
+  const radarData = project.channel === '音声' ? [
+    { cat: 'ナレッジ', score: 78 }, { cat: 'シナリオ', score: 65 }, { cat: '語彙', score: 82 },
+    { cat: 'データ連携', score: 58 }, { cat: '評価セット', score: 71 }, { cat: 'ガバナンス', score: 80 },
+    { cat: '音声適性', score: 64 }
+  ] : [
+    { cat: 'ナレッジ', score: 78 }, { cat: 'シナリオ', score: 65 }, { cat: '語彙', score: 82 },
+    { cat: 'データ連携', score: 58 }, { cat: '評価セット', score: 71 }, { cat: 'ガバナンス', score: 80 }
+  ];
+
+  const stages = [
+    { key: 'assess', label: 'Assess', icon: Sparkles }, { key: 'refine', label: 'Refine', icon: FileSearch },
+    { key: 'validate', label: 'Validate', icon: FlaskConical }, { key: 'poc', label: 'PoC', icon: Rocket },
+    { key: 'prod', label: 'Production', icon: Activity }, { key: 'operate', label: 'Operate', icon: RefreshCw }
+  ];
+
+  const isVoice = project.channel === '音声' || project.channel === 'ハイブリッド';
+
+  return (
+    <div className="px-7 py-7 max-w-[1400px]">
+      <button onClick={() => setView('dashboard')} className="text-[11px] mb-4 flex items-center gap-1" style={{ color: '#71717A' }}>
+        <ChevronRight size={12} className="rotate-180" /> ダッシュボード
+      </button>
+
+      <div className="flex items-start justify-between mb-7">
+        <div>
+          <div className="flex items-center gap-2 mb-1.5">
+            <ChannelBadge channel={project.channel} size="lg" />
+            <StageBadge stage={project.stage} />
+            <span className="text-[11px]" style={{ color: '#71717A' }}>· {project.company}</span>
+          </div>
+          <h1 className="text-[26px] leading-tight tracking-tight" style={{ fontFamily: '"Instrument Serif", serif', fontWeight: 400 }}>
+            {project.name}
+          </h1>
+        </div>
+        <div className="flex items-center gap-2">
+          <button className="px-3 py-1.5 rounded-md text-[12px] border" style={{ borderColor: '#E7E5DF', color: '#27272A' }}>
+            <span className="flex items-center gap-1.5"><Eye size={12} /> プレビュー</span>
+          </button>
+          <button className="px-3 py-1.5 rounded-md text-[12px] font-medium text-white flex items-center gap-1.5" style={{ background: '#1E1B4B' }}>
+            <Rocket size={12} /> 次のフェーズへ
+          </button>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-lg p-5 border mb-5" style={{ borderColor: '#E7E5DF' }}>
+        <div className="text-[11px] uppercase tracking-widest mb-4" style={{ color: '#A1A1AA' }}>Lifecycle</div>
+        <div className="flex items-center">
+          {stages.map((s, i) => {
+            const done = i < project.stageIdx;
+            const active = i === project.stageIdx;
+            const Icon = s.icon;
+            return (
+              <React.Fragment key={s.key}>
+                <div className="flex flex-col items-center" style={{ minWidth: 80 }}>
+                  <div className="w-9 h-9 rounded-full flex items-center justify-center mb-2 transition-all" style={{
+                    background: active ? '#1E1B4B' : done ? '#E0E7FF' : '#F4F4F0',
+                    color: active ? '#FFFFFF' : done ? '#1E1B4B' : '#A1A1AA',
+                    border: active ? '2px solid #C2410C' : 'none'
+                  }}>
+                    {done ? <CheckCircle2 size={16} /> : <Icon size={15} />}
+                  </div>
+                  <div className="text-[11px] font-medium" style={{ color: active ? '#18181B' : done ? '#52525B' : '#A1A1AA' }}>
+                    {s.label}
+                  </div>
+                </div>
+                {i < stages.length - 1 && (
+                  <div className="flex-1 h-px mx-1" style={{
+                    background: i < project.stageIdx ? '#1E1B4B' : '#E7E5DF',
+                    marginBottom: 22
+                  }} />
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-3 gap-5">
+        <div className="col-span-2 bg-white rounded-lg p-6 border" style={{ borderColor: '#E7E5DF' }}>
+          <div className="flex items-start justify-between mb-2">
+            <div>
+              <div className="text-[12px] font-semibold">Input Readiness Score</div>
+              <div className="text-[11px]" style={{ color: '#71717A' }}>
+                {project.channel === '音声' ? '音声制約を含めた7カテゴリ' : '6カテゴリ × 100点で評価'}
+              </div>
+            </div>
+            <span className="text-[10.5px] px-2 py-0.5 rounded" style={{ background: '#FEF3C7', color: '#92400E' }}>要改善</span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-6 items-center mt-4">
+            <div className="flex flex-col items-center justify-center">
+              <div className="text-[11px] uppercase tracking-widest" style={{ color: '#A1A1AA' }}>Overall Score</div>
+              <div className="flex items-baseline gap-1 mt-1">
+                <span style={{ fontFamily: '"Instrument Serif", serif', fontSize: 64, lineHeight: 1, color: '#1E1B4B' }}>{project.readiness}</span>
+                <span className="text-[18px]" style={{ color: '#A1A1AA' }}>/100</span>
+              </div>
+
+              {(project.voiceReadiness !== null || project.chatReadiness !== null) && (
+                <div className="flex gap-3 mt-3">
+                  {project.voiceReadiness !== null && (
+                    <div className="text-center px-3 py-1.5 rounded" style={{ background: '#FEF3C7' }}>
+                      <div className="flex items-center gap-1 text-[10px] font-semibold" style={{ color: '#92400E' }}>
+                        <Phone size={10} /> 音声
+                      </div>
+                      <div className="text-[18px] font-bold" style={{ color: scoreColor(project.voiceReadiness) }}>
+                        {project.voiceReadiness}
+                      </div>
+                    </div>
+                  )}
+                  {project.chatReadiness !== null && (
+                    <div className="text-center px-3 py-1.5 rounded" style={{ background: '#DBEAFE' }}>
+                      <div className="flex items-center gap-1 text-[10px] font-semibold" style={{ color: '#1E40AF' }}>
+                        <MessageCircle size={10} /> チャット
+                      </div>
+                      <div className="text-[18px] font-bold" style={{ color: scoreColor(project.chatReadiness) }}>
+                        {project.chatReadiness}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <div className="mt-3 px-3 py-2 rounded text-[10.5px] text-center" style={{ background: '#F4F4F0', color: '#52525B', maxWidth: 200 }}>
+                予測精度: <span className="font-semibold" style={{ color: '#1E1B4B' }}>78〜82%</span>
+                <div className="text-[9.5px] mt-0.5">PoC実施前モデル予測</div>
+              </div>
+            </div>
+            <div>
+              <ResponsiveContainer width="100%" height={240}>
+                <RadarChart data={radarData}>
+                  <PolarGrid stroke="#E7E5DF" />
+                  <PolarAngleAxis dataKey="cat" tick={{ fontSize: 9.5, fill: '#52525B' }} />
+                  <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
+                  <Radar dataKey="score" stroke="#1E1B4B" fill="#1E1B4B" fillOpacity={0.18} strokeWidth={2} />
+                </RadarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg p-5 border" style={{ borderColor: '#E7E5DF' }}>
+          <div className="flex items-center justify-between mb-3">
+            <div className="text-[12px] font-semibold">改善優先度トップ</div>
+            <span className="text-[10.5px]" style={{ color: '#71717A' }}>5件</span>
+          </div>
+          <div className="space-y-3">
+            {isVoice && <IssueItem priority="High" text="音声尺超過 14件（平均22秒、目標15秒）" cat="音声適性" delta="+18pt見込" />}
+            <IssueItem priority="High" text="CRMスキーマ未定義（顧客マスタ）" cat="データ連携" delta="+15pt見込" />
+            {isVoice && <IssueItem priority="High" text="指示語「これ」「こちら」42箇所" cat="音声適性" delta="+10pt見込" />}
+            <IssueItem priority="Med" text="想定問答セット 100問未達（現32問）" cat="評価セット" delta="+12pt見込" />
+            <IssueItem priority="Med" text="商品マニュアルにメタデータ未付与" cat="ナレッジ" delta="+8pt見込" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function IssueItem({ priority, text, cat, delta }) {
+  const c = priority === 'High' ? { bg: '#FEE2E2', fg: '#991B1B' } :
+            priority === 'Med' ? { bg: '#FEF3C7', fg: '#92400E' } :
+            { bg: '#F4F4F0', fg: '#52525B' };
+  return (
+    <div className="flex items-start gap-2.5 pb-3 border-b last:border-0" style={{ borderColor: '#F4F4F0' }}>
+      <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded mt-0.5" style={{ background: c.bg, color: c.fg }}>{priority}</span>
+      <div className="flex-1 min-w-0">
+        <div className="text-[12px] leading-snug font-medium" style={{ color: '#27272A' }}>{text}</div>
+        <div className="flex items-center gap-2 mt-1 text-[10.5px]" style={{ color: '#71717A' }}>
+          <span>{cat}</span><span>·</span>
+          <span style={{ color: '#059669', fontWeight: 600 }}>{delta}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ========== ASSESSMENT ========== */
+function AssessmentView({ project }) {
+  const baseCategories = [
+    { name: 'ナレッジソース', score: 78, items: 234, gaps: 12, desc: 'ドキュメント構造・粒度・メタデータ' },
+    { name: '業務シナリオ', score: 65, items: 18, gaps: 7, desc: '想定問答・エスカレーション条件' },
+    { name: '語彙辞書', score: 82, items: 156, gaps: 4, desc: '業界用語・略語・固有名詞' },
+    { name: 'データ連携仕様', score: 58, items: 6, gaps: 9, desc: 'CRM/基幹スキーマ・認証・SLA' },
+    { name: '評価データセット', score: 71, items: 32, gaps: 8, desc: 'テストQ&A・許容回答・NG基準' },
+    { name: 'ガバナンスルール', score: 80, items: 24, gaps: 3, desc: 'Guardrails・禁止トピック・PII定義' }
+  ];
+  const voiceCategory = { name: '音声適性', score: 64, items: 234, gaps: 18, desc: '尺・指示語・URL・読み方', voice: true };
+  const categories = (project.channel === '音声' || project.channel === 'ハイブリッド')
+    ? [...baseCategories, voiceCategory] : baseCategories;
+
+  return (
+    <div className="px-7 py-7 max-w-[1400px]">
+      <div className="mb-7 flex items-end justify-between">
+        <div>
+          <h1 className="text-[26px] tracking-tight" style={{ fontFamily: '"Instrument Serif", serif' }}>Assessment</h1>
+          <p className="text-[13px] mt-1" style={{ color: '#52525B' }}>インプット品質を採点し、PoC前に予測精度を可視化する</p>
+        </div>
+        <ChannelBadge channel={project.channel} size="lg" />
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        {categories.map((c, i) => (
+          <div key={i} className="bg-white rounded-lg p-5 border hover:shadow-sm transition-all cursor-pointer" style={{
+            borderColor: c.voice ? '#FEF3C7' : '#E7E5DF', borderWidth: c.voice ? 1.5 : 1
+          }}>
+            <div className="flex items-start justify-between mb-3">
+              <div>
+                <div className="flex items-center gap-2 mb-0.5">
+                  <div className="text-[13.5px] font-semibold">{c.name}</div>
+                  {c.voice && <span className="text-[9px] px-1.5 py-0.5 rounded font-bold" style={{ background: '#FEF3C7', color: '#92400E' }}>VOICE</span>}
+                </div>
+                <div className="text-[11px]" style={{ color: '#71717A' }}>{c.desc}</div>
+              </div>
+              <div className="flex items-baseline gap-0.5">
+                <span style={{ fontFamily: '"Instrument Serif", serif', fontSize: 32, color: scoreColor(c.score) }}>{c.score}</span>
+                <span className="text-[12px]" style={{ color: '#A1A1AA' }}>/100</span>
+              </div>
+            </div>
+            <div className="h-1.5 rounded-full overflow-hidden mb-3" style={{ background: '#F4F4F0' }}>
+              <div className="h-full rounded-full" style={{ width: `${c.score}%`, background: scoreColor(c.score) }} />
+            </div>
+            <div className="flex items-center gap-4 text-[11px]" style={{ color: '#71717A' }}>
+              <span><span className="font-semibold" style={{ color: '#27272A' }}>{c.items}</span> アイテム</span>
+              <span>·</span>
+              <span><span className="font-semibold" style={{ color: '#C2410C' }}>{c.gaps}</span> ギャップ検出</span>
+              <span className="ml-auto flex items-center gap-1" style={{ color: '#1E1B4B' }}>詳細 <ChevronRight size={11} /></span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ========== DATA SOURCE ========== */
+function DataSourceView({ project }) {
+  const [tab, setTab] = useState('sources');
+  const sources = [
+    { url: 'https://example-insurance.co.jp/faq/', pages: 28, crawl: 92, content: 78, suitability: 88, status: 'ok', type: 'FAQ' },
+    { url: 'https://example-insurance.co.jp/products/', pages: 45, crawl: 88, content: 62, suitability: 54, status: 'warn', type: '商品説明' },
+    { url: 'https://example-insurance.co.jp/manual/', pages: 12, crawl: 24, content: 80, suitability: 32, status: 'critical', type: 'マニュアル(SPA)' },
+    { url: 'https://example-insurance.co.jp/news/', pages: 156, crawl: 95, content: 30, suitability: 12, status: 'critical', type: 'お知らせ' },
+    { url: 'salesforce://CustomObject__c', pages: 0, crawl: 100, content: 88, suitability: 85, status: 'ok', type: 'Salesforce', qa: true }
+  ];
+
+  const drafts = [
+    { q: '保険料の支払方法を教えてください', source: 'faq/payment.html', status: 'pending', confidence: 92 },
+    { q: '解約手続きはどのように行いますか', source: 'faq/cancel.html', status: 'pending', confidence: 88 },
+    { q: '事故にあった場合の連絡先は', source: 'faq/accident.html', status: 'approved', confidence: 95 },
+    { q: '海外旅行中の事故も補償されますか', source: 'products/travel.html', status: 'pending', confidence: 76 },
+    { q: '契約者と被保険者の違いは', source: 'manual/glossary.html', status: 'rejected', confidence: 54 },
+  ];
+
+  return (
+    <div className="px-7 py-7 max-w-[1400px]">
+      <div className="flex items-end justify-between mb-2">
+        <div>
+          <h1 className="text-[26px] tracking-tight" style={{ fontFamily: '"Instrument Serif", serif' }}>Data Source</h1>
+          <p className="text-[13px] mt-1" style={{ color: '#52525B' }}>URLクロール・診断・FAQドラフト・外部システム連携を一元管理</p>
+        </div>
+        <button className="flex items-center gap-2 px-3.5 py-2 rounded-md text-[12.5px] font-medium text-white" style={{ background: '#1E1B4B' }}>
+          <Plus size={14} /> ソース追加
+        </button>
+      </div>
+
+      <div className="flex gap-1 border-b mt-6 mb-5" style={{ borderColor: '#E7E5DF' }}>
+        {[
+          { id: 'sources', label: 'クロール元', count: 5 },
+          { id: 'drafts', label: 'FAQドラフト', count: 5, badge: true },
+          { id: 'connectors', label: '外部連携', count: 3, qs: true }
+        ].map(t => (
+          <button key={t.id} onClick={() => setTab(t.id)}
+            className="px-3 py-2 text-[12.5px] font-medium border-b-2 -mb-px transition-all flex items-center gap-1.5"
+            style={{
+              borderColor: tab === t.id ? '#1E1B4B' : 'transparent',
+              color: tab === t.id ? '#1E1B4B' : '#71717A'
+            }}>
+            {t.label}
+            {t.count !== null && (
+              <span className="text-[10px] px-1.5 py-0.5 rounded" style={{
+                background: t.badge ? '#C2410C' : '#F4F4F0',
+                color: t.badge ? 'white' : '#71717A'
+              }}>{t.count}</span>
+            )}
+            {t.qs && <QSChip />}
+          </button>
+        ))}
+      </div>
+
+      {tab === 'sources' && (
+        <>
+          <div className="bg-white rounded-lg p-4 border mb-5 flex items-start gap-3" style={{ borderColor: '#FEF3C7', background: 'linear-gradient(to right, #FFFBEB, #FAFAF7)' }}>
+            <AlertTriangle size={18} style={{ color: '#C2410C' }} className="flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <div className="text-[12.5px] font-semibold mb-0.5">2件のクロール元で問題を検出</div>
+              <div className="text-[11.5px]" style={{ color: '#52525B' }}>
+                <span className="font-medium">/manual/</span> はSPAのため取得できていません。
+                <span className="font-medium ml-2">/news/</span> はAI回答に含めるべきでない可能性があります。
+              </div>
+            </div>
+            <button className="text-[11px] px-2.5 py-1 rounded border" style={{ borderColor: '#E7E5DF' }}>詳細</button>
+          </div>
+
+          <div className="bg-white rounded-lg border" style={{ borderColor: '#E7E5DF' }}>
+            <div className="px-5 py-3 border-b text-[12px] font-semibold" style={{ borderColor: '#E7E5DF' }}>
+              データソース一覧 · 5件
+            </div>
+            <table className="w-full">
+              <thead>
+                <tr className="text-[10.5px] uppercase tracking-wider" style={{ color: '#A1A1AA' }}>
+                  <th className="text-left font-medium px-5 py-2">URL/接続先</th>
+                  <th className="text-left font-medium py-2">種別</th>
+                  <th className="text-right font-medium py-2">ページ数</th>
+                  <th className="text-center font-medium py-2">クロール可否</th>
+                  <th className="text-center font-medium py-2">コンテンツ品質</th>
+                  <th className="text-center font-medium py-2">FAQ化適性</th>
+                  <th className="text-right font-medium py-2 px-5"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {sources.map((s, i) => (
+                  <tr key={i} className="border-t" style={{ borderColor: '#F4F4F0' }}>
+                    <td className="px-5 py-3.5">
+                      <div className="flex items-center gap-2">
+                        {s.qa ? <Database size={11} style={{ color: '#FF9900' }} /> : <Link2 size={11} style={{ color: '#A1A1AA' }} />}
+                        <span className="text-[11.5px] font-mono truncate" style={{ fontFamily: '"JetBrains Mono", monospace' }}>{s.url}</span>
+                        {s.qa && <QSChip />}
+                      </div>
+                    </td>
+                    <td className="py-3.5 text-[11px]" style={{ color: '#52525B' }}>{s.type}</td>
+                    <td className="py-3.5 text-right text-[12px] font-mono" style={{ fontFamily: '"JetBrains Mono", monospace' }}>{s.pages || '—'}</td>
+                    <td className="py-3.5"><MiniScore score={s.crawl} /></td>
+                    <td className="py-3.5"><MiniScore score={s.content} /></td>
+                    <td className="py-3.5"><MiniScore score={s.suitability} highlight /></td>
+                    <td className="py-3.5 px-5 text-right">
+                      <button style={{ color: '#71717A' }}><MoreHorizontal size={14} /></button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+
+      {tab === 'drafts' && (
+        <>
+          <div className="bg-white rounded-lg p-4 border mb-5 flex items-center gap-3" style={{ borderColor: '#E0E7FF', background: 'linear-gradient(to right, #EEF2FF, #FAFAF7)' }}>
+            <Wand2 size={16} style={{ color: '#1E1B4B' }} />
+            <div className="flex-1 text-[11.5px]">
+              <span className="font-semibold">23件のFAQドラフト</span>をAIが生成。承認されたものだけが本番KBに反映されます。
+            </div>
+          </div>
+          <div className="bg-white rounded-lg border" style={{ borderColor: '#E7E5DF' }}>
+            {drafts.map((d, i) => (
+              <div key={i} className="px-5 py-4 border-t first:border-t-0" style={{ borderColor: '#F4F4F0' }}>
+                <div className="flex items-start gap-4">
+                  <DraftStatusIcon status={d.status} />
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[13px] font-semibold mb-1">{d.q}</div>
+                    <div className="flex items-center gap-3 text-[10.5px]" style={{ color: '#71717A' }}>
+                      <span className="flex items-center gap-1"><Link2 size={9} /> {d.source}</span>
+                      <span>·</span>
+                      <span>信頼度 <span className="font-semibold" style={{ color: scoreColor(d.confidence) }}>{d.confidence}%</span></span>
+                    </div>
+                  </div>
+                  {d.status === 'pending' && (
+                    <div className="flex items-center gap-1.5">
+                      <button className="text-[11px] px-2.5 py-1 rounded border" style={{ borderColor: '#E7E5DF', color: '#52525B' }}>編集</button>
+                      <button className="text-[11px] px-2.5 py-1 rounded border flex items-center gap-1" style={{ borderColor: '#FEE2E2', color: '#991B1B' }}><X size={11} /> 却下</button>
+                      <button className="text-[11px] px-2.5 py-1 rounded text-white flex items-center gap-1" style={{ background: '#059669' }}><Check size={11} /> 承認</button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {tab === 'connectors' && (
+        <>
+          <div className="bg-white rounded-lg p-4 border mb-5 flex items-center gap-3" style={{ borderColor: '#FEF3C7', background: 'linear-gradient(to right, #FFFBEB, #FAFAF7)' }}>
+            <div className="w-8 h-8 rounded flex items-center justify-center" style={{ background: '#FF9900' }}>
+              <GitMerge size={14} style={{ color: 'white' }} />
+            </div>
+            <div className="flex-1">
+              <div className="text-[12.5px] font-semibold">外部システム連携</div>
+              <div className="text-[11px]" style={{ color: '#52525B' }}>Quick Automate経由でCRM・基幹システム・SaaSを直接データソース化</div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <ConnectorCard name="Salesforce" status="connected" desc="Custom Object 12種を同期中" detail="最終同期: 5分前" icon="🔵" />
+            <ConnectorCard name="kintone" status="connected" desc="ヘルプデスクアプリを同期" detail="最終同期: 1時間前" icon="🟡" />
+            <ConnectorCard name="Notion" status="connected" desc="ナレッジワークスペース連携" detail="最終同期: 30分前" icon="⚫" />
+            <ConnectorCard name="ServiceNow" status="available" desc="ITSMケース履歴連携" detail="クリックして接続" icon="🟢" />
+            <ConnectorCard name="Microsoft 365" status="available" desc="SharePoint/Teams連携" detail="クリックして接続" icon="🔷" />
+            <ConnectorCard name="Slack" status="available" desc="チャンネル横断検索" detail="クリックして接続" icon="🟣" />
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function ConnectorCard({ name, status, desc, detail, icon }) {
+  const isConnected = status === 'connected';
+  return (
+    <div className="bg-white rounded-lg p-4 border hover:shadow-sm transition-all cursor-pointer" style={{ borderColor: '#E7E5DF' }}>
+      <div className="flex items-start justify-between mb-2">
+        <div className="flex items-center gap-2.5">
+          <div className="w-9 h-9 rounded-md flex items-center justify-center text-[16px]" style={{ background: '#F4F4F0' }}>
+            {icon}
+          </div>
+          <div>
+            <div className="text-[13px] font-semibold">{name}</div>
+            <div className="text-[10.5px]" style={{ color: '#71717A' }}>{desc}</div>
+          </div>
+        </div>
+        {isConnected ? (
+          <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded flex items-center gap-1" style={{ background: '#D1FAE5', color: '#065F46' }}>
+            <CheckCircle2 size={9} /> 接続中
+          </span>
+        ) : (
+          <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded" style={{ background: '#F4F4F0', color: '#71717A' }}>未接続</span>
+        )}
+      </div>
+      <div className="text-[10.5px] mt-2" style={{ color: isConnected ? '#52525B' : '#A1A1AA' }}>{detail}</div>
+    </div>
+  );
+}
+
+function MiniScore({ score, highlight }) {
+  return (
+    <div className="flex items-center justify-center gap-1.5">
+      <div className="w-10 h-1 rounded-full overflow-hidden" style={{ background: '#F4F4F0' }}>
+        <div className="h-full rounded-full" style={{ width: `${score}%`, background: scoreColor(score) }} />
+      </div>
+      <span className="text-[11px] font-mono w-6 text-right" style={{
+        fontFamily: '"JetBrains Mono", monospace',
+        color: scoreColor(score),
+        fontWeight: highlight ? 700 : 500
+      }}>{score}</span>
+    </div>
+  );
+}
+
+function DraftStatusIcon({ status }) {
+  if (status === 'pending') return (
+    <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: '#FEF3C7' }}>
+      <Clock size={13} style={{ color: '#92400E' }} />
+    </div>
+  );
+  if (status === 'approved') return (
+    <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: '#D1FAE5' }}>
+      <Check size={13} style={{ color: '#065F46' }} />
+    </div>
+  );
+  return (
+    <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: '#FEE2E2' }}>
+      <X size={13} style={{ color: '#991B1B' }} />
+    </div>
+  );
+}
+
+/* ========== KNOWLEDGE BUILDER ========== */
+function KnowledgeView({ project }) {
+  const [selected, setSelected] = useState(2);
+  const [panel, setPanel] = useState('voice');
+  const isVoice = project.channel === '音声' || project.channel === 'ハイブリッド';
+
+  const docs = [
+    { name: 'product-faq-billing.md', cat: 'FAQ', score: 92, status: 'good', size: '4.2KB', meta: true, voiceScore: 88 },
+    { name: 'product-faq-shipping.md', cat: 'FAQ', score: 88, status: 'good', size: '3.1KB', meta: true, voiceScore: 76 },
+    { name: 'manual-onboarding.pdf', cat: 'マニュアル', score: 54, status: 'warning', size: '2.4MB', meta: false, voiceScore: 32 },
+    { name: 'escalation-rules.docx', cat: 'ルール', score: 41, status: 'critical', size: '186KB', meta: false, voiceScore: 28 },
+    { name: 'glossary-insurance.md', cat: '辞書', score: 95, status: 'good', size: '12KB', meta: true, voiceScore: 91 },
+    { name: 'compliance-2026.pdf', cat: '規程', score: 67, status: 'warning', size: '890KB', meta: true, voiceScore: 45 }
+  ];
+
+  return (
+    <div className="px-7 py-7 max-w-[1400px]">
+      <div className="flex items-end justify-between mb-7">
+        <div>
+          <h1 className="text-[26px] tracking-tight" style={{ fontFamily: '"Instrument Serif", serif' }}>Knowledge Builder</h1>
+          <p className="text-[13px] mt-1" style={{ color: '#52525B' }}>ナレッジソースの品質をAIが評価し、改善案を自動生成</p>
+        </div>
+        <div className="flex gap-2">
+          <button className="px-3 py-1.5 rounded-md text-[12px] border flex items-center gap-1.5" style={{ borderColor: '#E7E5DF' }}>
+            <RefreshCw size={12} /> 再スコアリング
+          </button>
+          <button className="px-3 py-1.5 rounded-md text-[12px] font-medium text-white flex items-center gap-1.5" style={{ background: '#1E1B4B' }}>
+            <Plus size={12} /> ドキュメント追加
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-5 gap-5">
+        <div className="col-span-3 bg-white rounded-lg border" style={{ borderColor: '#E7E5DF' }}>
+          <div className="px-4 py-3 border-b flex items-center justify-between" style={{ borderColor: '#E7E5DF' }}>
+            <div className="text-[12px] font-semibold">{docs.length}件のドキュメント</div>
+            <div className="flex gap-2">
+              <button className="text-[10.5px] px-2 py-0.5 rounded" style={{ background: '#F4F4F0' }}>すべて</button>
+              <button className="text-[10.5px] px-2 py-0.5 rounded" style={{ color: '#71717A' }}>要改善</button>
+              {isVoice && <button className="text-[10.5px] px-2 py-0.5 rounded flex items-center gap-1" style={{ color: '#92400E' }}>
+                <Phone size={9} /> 音声NG
+              </button>}
+            </div>
+          </div>
+          <div>
+            {docs.map((d, i) => (
+              <div key={i} onClick={() => setSelected(i)}
+                   className="flex items-center gap-3 px-4 py-3 border-b cursor-pointer transition-all"
+                   style={{
+                     borderColor: '#F4F4F0',
+                     background: selected === i ? '#FAFAF7' : 'transparent',
+                     borderLeft: selected === i ? '2px solid #1E1B4B' : '2px solid transparent'
+                   }}>
+                <div className="w-8 h-8 rounded flex items-center justify-center flex-shrink-0" style={{
+                  background: d.status === 'good' ? '#D1FAE5' : d.status === 'warning' ? '#FEF3C7' : '#FEE2E2'
+                }}>
+                  <FileText size={14} style={{
+                    color: d.status === 'good' ? '#065F46' : d.status === 'warning' ? '#92400E' : '#991B1B'
+                  }} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[12px] font-medium font-mono truncate" style={{ fontFamily: '"JetBrains Mono", monospace' }}>{d.name}</div>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: '#F4F4F0', color: '#52525B' }}>{d.cat}</span>
+                    <span className="text-[10px]" style={{ color: '#A1A1AA' }}>{d.size}</span>
+                    {!d.meta && <span className="text-[10px] flex items-center gap-0.5" style={{ color: '#C2410C' }}>
+                      <AlertTriangle size={9} /> メタなし
+                    </span>}
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  {isVoice && (
+                    <div className="flex items-center gap-1">
+                      <Phone size={9} style={{ color: '#A1A1AA' }} />
+                      <span className="text-[11px] font-mono" style={{ fontFamily: '"JetBrains Mono", monospace', color: scoreColor(d.voiceScore) }}>{d.voiceScore}</span>
+                    </div>
+                  )}
+                  <div className="flex items-center gap-1">
+                    {isVoice && <MessageCircle size={9} style={{ color: '#A1A1AA' }} />}
+                    <span className="text-[11px] font-mono" style={{ fontFamily: '"JetBrains Mono", monospace', color: scoreColor(d.score) }}>{d.score}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="col-span-2 bg-white rounded-lg border" style={{ borderColor: '#E7E5DF' }}>
+          {isVoice && (
+            <div className="flex border-b" style={{ borderColor: '#E7E5DF' }}>
+              <button onClick={() => setPanel('voice')} className="flex-1 px-4 py-2.5 text-[11.5px] font-semibold border-b-2 -mb-px flex items-center justify-center gap-1.5" style={{
+                borderColor: panel === 'voice' ? '#C2410C' : 'transparent',
+                color: panel === 'voice' ? '#C2410C' : '#71717A'
+              }}>
+                <Mic size={12} /> Voice Lint
+              </button>
+              <button onClick={() => setPanel('ai')} className="flex-1 px-4 py-2.5 text-[11.5px] font-semibold border-b-2 -mb-px flex items-center justify-center gap-1.5" style={{
+                borderColor: panel === 'ai' ? '#1E1B4B' : 'transparent',
+                color: panel === 'ai' ? '#1E1B4B' : '#71717A'
+              }}>
+                <Sparkles size={12} /> AI改善提案
+              </button>
+            </div>
+          )}
+
+          <div className="p-5">
+            {panel === 'voice' && isVoice ? <VoiceLintPanel doc={docs[selected]} /> : <AISuggestionPanel doc={docs[selected]} />}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function VoiceLintPanel({ doc }) {
+  return (
+    <>
+      <div className="flex items-center gap-2 mb-1">
+        <Mic size={13} style={{ color: '#C2410C' }} />
+        <span className="text-[10.5px] uppercase tracking-widest font-semibold" style={{ color: '#C2410C' }}>音声適性チェック</span>
+      </div>
+      <div className="text-[14px] font-mono font-semibold mb-3" style={{ fontFamily: '"JetBrains Mono", monospace' }}>{doc.name}</div>
+
+      <div className="grid grid-cols-2 gap-2 mb-4">
+        <div className="px-3 py-2 rounded border" style={{ borderColor: '#FEE2E2', background: '#FEF2F2' }}>
+          <div className="flex items-center gap-1 text-[10px] font-semibold" style={{ color: '#991B1B' }}>
+            <Timer size={10} /> 尺超過
+          </div>
+          <div className="text-[18px] font-bold" style={{ color: '#991B1B' }}>14<span className="text-[10px]" style={{ color: '#71717A' }}> / 32</span></div>
+        </div>
+        <div className="px-3 py-2 rounded border" style={{ borderColor: '#FEF3C7', background: '#FFFBEB' }}>
+          <div className="flex items-center gap-1 text-[10px] font-semibold" style={{ color: '#92400E' }}>
+            <FileWarning size={10} /> 指示語
+          </div>
+          <div className="text-[18px] font-bold" style={{ color: '#92400E' }}>42<span className="text-[10px]" style={{ color: '#71717A' }}> 箇所</span></div>
+        </div>
+        <div className="px-3 py-2 rounded border" style={{ borderColor: '#FEF3C7', background: '#FFFBEB' }}>
+          <div className="flex items-center gap-1 text-[10px] font-semibold" style={{ color: '#92400E' }}>
+            <Link2 size={10} /> URL混入
+          </div>
+          <div className="text-[18px] font-bold" style={{ color: '#92400E' }}>8<span className="text-[10px]" style={{ color: '#71717A' }}> 箇所</span></div>
+        </div>
+        <div className="px-3 py-2 rounded border" style={{ borderColor: '#E7E5DF', background: '#FAFAF7' }}>
+          <div className="flex items-center gap-1 text-[10px] font-semibold" style={{ color: '#52525B' }}>
+            <Volume2 size={10} /> 読み未定義
+          </div>
+          <div className="text-[18px] font-bold" style={{ color: '#27272A' }}>23<span className="text-[10px]" style={{ color: '#71717A' }}> 用語</span></div>
+        </div>
+      </div>
+
+      <div className="text-[10.5px] uppercase tracking-widest font-semibold mb-2" style={{ color: '#71717A' }}>本文プレビュー</div>
+      <div className="p-3 rounded text-[11.5px] leading-relaxed mb-3" style={{ background: '#FAFAF7', border: '1px solid #E7E5DF' }}>
+        ご解約は<HL color="#FEE2E2">こちら</HL>のフォームより。書類は<HL color="#FEE2E2">下記</HL>の通り。詳細は<HL color="#FEF3C7">https://example.co.jp/cancel</HL>を参照。<HL color="#DBEAFE">なお、当該手続きは平日9時から17時まで、書類到着から3営業日以内に処理いたします</HL>。
+      </div>
+
+      <div className="flex items-center gap-2 mb-3 px-3 py-2 rounded" style={{ background: '#FEF2F2' }}>
+        <Timer size={13} style={{ color: '#991B1B' }} />
+        <span className="text-[11px]" style={{ color: '#991B1B' }}>読み上げ予測: <span className="font-bold">22.8秒</span> (目標 ≤ 15秒)</span>
+      </div>
+
+      <div className="text-[10.5px] uppercase tracking-widest font-semibold mb-2" style={{ color: '#059669' }}>音声リライト案</div>
+      <div className="p-3 rounded text-[11.5px] leading-relaxed mb-3" style={{ background: '#F0FDF4', border: '1px solid #D1FAE5' }}>
+        ご解約は、SMSでフォームURLをお送りします。お手元に保険証券と本人確認書類をご準備ください。手続きは平日9時から17時、3営業日で完了します。
+      </div>
+
+      <div className="flex items-center gap-2 mb-4 px-3 py-2 rounded" style={{ background: '#F0FDF4' }}>
+        <CheckCircle2 size={13} style={{ color: '#059669' }} />
+        <span className="text-[11px]" style={{ color: '#065F46' }}>読み上げ予測: <span className="font-bold">12.4秒</span> ✓</span>
+      </div>
+
+      <div className="flex gap-2">
+        <button className="flex-1 px-3 py-2 rounded-md text-[12px] font-medium text-white" style={{ background: '#1E1B4B' }}>リライト案を採用</button>
+        <button className="px-3 py-2 rounded-md text-[12px] border" style={{ borderColor: '#E7E5DF' }}>手動編集</button>
+      </div>
+    </>
+  );
+}
+
+function HL({ children, color }) {
+  return <span style={{ background: color, padding: '1px 3px', borderRadius: 2 }}>{children}</span>;
+}
+
+function AISuggestionPanel({ doc }) {
+  return (
+    <>
+      <div className="flex items-center gap-2 mb-1">
+        <Sparkles size={13} style={{ color: '#1E1B4B' }} />
+        <span className="text-[10.5px] uppercase tracking-widest font-semibold" style={{ color: '#1E1B4B' }}>AI 改善提案</span>
+      </div>
+      <div className="text-[14px] font-mono font-semibold mb-1" style={{ fontFamily: '"JetBrains Mono", monospace' }}>{doc.name}</div>
+      <div className="text-[11px] mb-4" style={{ color: '#71717A' }}>現在スコア {doc.score} → 改善後予測 <span className="font-semibold" style={{ color: '#059669' }}>87</span></div>
+
+      <div className="space-y-3">
+        <SuggestionCard icon={Tag} title="メタデータの自動付与" desc=".metadata.json を生成。category / department / language を埋めて検索精度+15%" impact="+15" />
+        <SuggestionCard icon={Layers} title="セクション分割の推奨" desc="1ファイルに12トピック混在。Hierarchical chunking最適化のため4分割推奨" impact="+10" />
+        <SuggestionCard icon={BookOpen} title="文脈の補完" desc="「弊社」「当該手続き」など主語省略が23箇所。RAG検索でヒット率低下" impact="+8" />
+      </div>
+
+      <div className="mt-5 flex gap-2">
+        <button className="flex-1 px-3 py-2 rounded-md text-[12px] font-medium text-white" style={{ background: '#1E1B4B' }}>すべて適用</button>
+        <button className="px-3 py-2 rounded-md text-[12px] border" style={{ borderColor: '#E7E5DF' }}>個別確認</button>
+      </div>
+    </>
+  );
+}
+
+function SuggestionCard({ icon: Icon, title, desc, impact }) {
+  return (
+    <div className="p-3 rounded-md border" style={{ borderColor: '#E7E5DF', background: '#FAFAF7' }}>
+      <div className="flex items-start gap-2.5">
+        <div className="w-7 h-7 rounded flex items-center justify-center flex-shrink-0" style={{ background: 'white', color: '#1E1B4B' }}>
+          <Icon size={13} />
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center justify-between gap-2 mb-1">
+            <div className="text-[12px] font-semibold">{title}</div>
+            <span className="text-[10.5px] font-bold px-1.5 py-0.5 rounded" style={{ background: '#D1FAE5', color: '#065F46' }}>+{impact}</span>
+          </div>
+          <div className="text-[11px] leading-relaxed" style={{ color: '#52525B' }}>{desc}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ========== TESTS ========== */
+function TestsView({ project }) {
+  const isVoice = project.channel === '音声' || project.channel === 'ハイブリッド';
+  const trend = [
+    { d: 'v1.0', acc: 58 }, { d: 'v1.1', acc: 64 }, { d: 'v1.2', acc: 67 },
+    { d: 'v2.0', acc: 73 }, { d: 'v2.1', acc: 76 }, { d: 'v2.2', acc: 78 }, { d: 'v2.3', acc: 82 }
+  ];
+
+  const tests = [
+    { q: '解約手続きを教えてください', expected: '解約方法とフォーム案内', sec: 11.2, result: 'pass', cat: '手続き' },
+    { q: '保険料の支払いはクレカでもOK？', expected: '対応カード一覧', sec: 8.4, result: 'pass', cat: '支払い' },
+    { q: '事故にあったらまず何を？', expected: '緊急連絡フロー', sec: 13.8, result: 'pass', cat: '事故対応' },
+    { q: '契約者と被保険者って違うの？', expected: '用語説明 + 例', sec: 18.5, result: 'fail', cat: '用語', failReason: '尺超過' },
+    { q: '海外旅行中の事故も補償されますか', expected: '海外特約の説明', sec: 14.6, result: 'pass', cat: '補償範囲' },
+    { q: '担当者を呼んで', expected: 'オペレーター転送', sec: 4.2, result: 'pass', cat: '転送' },
+    { q: 'カスハラ対応について教えて', expected: 'ブロック', sec: 0, result: 'fail', cat: 'カバー外', failReason: 'KB欠落' }
+  ];
+
+  return (
+    <div className="px-7 py-7 max-w-[1400px]">
+      <div className="flex items-end justify-between mb-7">
+        <div>
+          <h1 className="text-[26px] tracking-tight" style={{ fontFamily: '"Instrument Serif", serif' }}>Test Manager</h1>
+          <p className="text-[13px] mt-1" style={{ color: '#52525B' }}>評価データセットを管理し、KB更新ごとに自動回帰テスト</p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-4 gap-4 mb-5">
+        <div className="bg-white rounded-lg p-5 border" style={{ borderColor: '#E7E5DF' }}>
+          <div className="text-[11px]" style={{ color: '#71717A' }}>合格率</div>
+          <div className="text-[26px] font-bold tracking-tight">82.3<span className="text-[14px]" style={{ color: '#A1A1AA' }}>%</span></div>
+          <div className="text-[11px] flex items-center gap-1" style={{ color: '#059669' }}>
+            <ArrowUpRight size={11} /> +4.0% 先週比
+          </div>
+        </div>
+        <div className="bg-white rounded-lg p-5 border" style={{ borderColor: '#E7E5DF' }}>
+          <div className="text-[11px]" style={{ color: '#71717A' }}>ハルシネーション率</div>
+          <div className="text-[26px] font-bold tracking-tight">2.1<span className="text-[14px]" style={{ color: '#A1A1AA' }}>%</span></div>
+          <div className="text-[11px] flex items-center gap-1" style={{ color: '#059669' }}>
+            <ArrowDownRight size={11} /> -1.3% 改善
+          </div>
+        </div>
+        {isVoice && (
+          <div className="bg-white rounded-lg p-5 border" style={{ borderColor: '#FEF3C7', borderWidth: 1.5 }}>
+            <div className="flex items-center gap-1 text-[11px]" style={{ color: '#92400E' }}>
+              <Phone size={10} /> 平均読み上げ時間
+            </div>
+            <div className="text-[26px] font-bold tracking-tight">13.4<span className="text-[14px]" style={{ color: '#A1A1AA' }}>秒</span></div>
+            <div className="text-[11px]" style={{ color: '#92400E' }}>14件 が15秒超過</div>
+          </div>
+        )}
+        <div className="bg-white rounded-lg p-5 border" style={{ borderColor: '#E7E5DF' }}>
+          <div className="flex items-center justify-between mb-2">
+            <div className="text-[11px]" style={{ color: '#71717A' }}>バージョン別精度</div>
+            <PoweredBy component="Quick Sight" />
+          </div>
+          <ResponsiveContainer width="100%" height={56}>
+            <LineChart data={trend}>
+              <Line type="monotone" dataKey="acc" stroke="#1E1B4B" strokeWidth={2} dot={{ r: 2.5, fill: '#1E1B4B' }} />
+              <Tooltip contentStyle={{ fontSize: 10, padding: 4 }} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-lg border" style={{ borderColor: '#E7E5DF' }}>
+        <div className="px-5 py-3 border-b flex items-center justify-between" style={{ borderColor: '#E7E5DF' }}>
+          <div className="text-[12px] font-semibold">テストケース · {tests.length}件</div>
+          <div className="flex items-center gap-2">
+            <button className="text-[11px] px-2.5 py-1 rounded border flex items-center gap-1" style={{ borderColor: '#E7E5DF' }}>
+              <Sparkles size={11} /> AIで候補生成
+            </button>
+            <button className="text-[11px] px-2.5 py-1 rounded text-white flex items-center gap-1" style={{ background: '#1E1B4B' }}>
+              <Plus size={11} /> 追加
+            </button>
+          </div>
+        </div>
+        <table className="w-full">
+          <thead>
+            <tr className="text-[10.5px] uppercase tracking-wider" style={{ color: '#A1A1AA' }}>
+              <th className="text-left font-medium px-5 py-2">結果</th>
+              <th className="text-left font-medium py-2">質問</th>
+              <th className="text-left font-medium py-2">期待される回答</th>
+              {isVoice && <th className="text-center font-medium py-2">読み上げ秒数</th>}
+              <th className="text-left font-medium py-2">カテゴリ</th>
+              <th className="text-right font-medium py-2 px-5"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {tests.map((t, i) => (
+              <tr key={i} className="border-t" style={{ borderColor: '#F4F4F0' }}>
+                <td className="px-5 py-3">
+                  {t.result === 'pass' ? (
+                    <span className="flex items-center gap-1 text-[11px] font-semibold" style={{ color: '#059669' }}>
+                      <CheckCircle2 size={12} /> Pass
+                    </span>
+                  ) : (
+                    <div>
+                      <span className="flex items-center gap-1 text-[11px] font-semibold" style={{ color: '#DC2626' }}>
+                        <AlertTriangle size={12} /> Fail
+                      </span>
+                      <span className="text-[10px]" style={{ color: '#991B1B' }}>{t.failReason}</span>
+                    </div>
+                  )}
+                </td>
+                <td className="py-3 text-[12px]" style={{ color: '#27272A' }}>{t.q}</td>
+                <td className="py-3 text-[11.5px]" style={{ color: '#71717A' }}>{t.expected}</td>
+                {isVoice && (
+                  <td className="py-3 text-center">
+                    {t.sec > 0 ? (
+                      <span className="text-[11.5px] font-mono px-2 py-0.5 rounded" style={{
+                        fontFamily: '"JetBrains Mono", monospace',
+                        background: t.sec > 15 ? '#FEE2E2' : t.sec > 10 ? '#FEF3C7' : '#D1FAE5',
+                        color: t.sec > 15 ? '#991B1B' : t.sec > 10 ? '#92400E' : '#065F46'
+                      }}>{t.sec}s</span>
+                    ) : <span style={{ color: '#A1A1AA' }}>—</span>}
+                  </td>
+                )}
+                <td className="py-3"><span className="text-[10.5px] px-2 py-0.5 rounded" style={{ background: '#F4F4F0', color: '#52525B' }}>{t.cat}</span></td>
+                <td className="py-3 px-5 text-right">
+                  <button style={{ color: '#71717A' }}><MoreHorizontal size={14} /></button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+/* ========== PRODUCTION INSIGHT ========== */
+function ProductionView() {
+  const issues = [
+    { time: '14:23', q: '法人契約の保険料控除証明書が欲しい', score: 32, action: 'KB追加候補', count: 14 },
+    { time: '13:51', q: '解約後も等級は引き継げる？', score: 41, action: 'FAQ未カバー', count: 8 },
+    { time: '13:08', q: '事故対応の翻訳サービスはありますか', score: 28, action: '対応範囲外', count: 3 },
+    { time: '12:42', q: 'マイページのパスワードリセット手順', score: 56, action: '改善余地あり', count: 22 },
+    { time: '11:30', q: 'ペット保険の補償内容を比較したい', score: 38, action: '比較資料不足', count: 11 }
+  ];
+
+  return (
+    <div className="px-7 py-7 max-w-[1400px]">
+      <div className="flex items-end justify-between mb-7">
+        <div>
+          <h1 className="text-[26px] tracking-tight" style={{ fontFamily: '"Instrument Serif", serif' }}>Production Insight</h1>
+          <p className="text-[13px] mt-1" style={{ color: '#52525B' }}>本番ログから「答えられなかった質問」を抽出 → 改善バックログへ</p>
+        </div>
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-md text-[11.5px]" style={{ background: '#FEF3C7', color: '#92400E' }}>
+          <AlertTriangle size={12} /> 未対応バックログ 18件
+        </div>
+      </div>
+
+      <div className="grid grid-cols-4 gap-4 mb-5">
+        <KPICard label="本番呼び出し数" value="18,432" delta={+12.4} hint="今週" suffix="" />
+        <KPICard label="解決率" value="76.8%" delta={+2.3} hint="先週比" suffix="" />
+        <KPICard label="低スコア回答" value="287" delta={-15} hint="改善中" inverse />
+        <KPICard label="Guardrails ブロック" value="42" delta={+8} hint="要確認" inverse />
+      </div>
+
+      <div className="bg-white rounded-lg border" style={{ borderColor: '#E7E5DF' }}>
+        <div className="px-5 py-3 border-b flex items-center justify-between" style={{ borderColor: '#E7E5DF' }}>
+          <div className="flex items-center gap-2">
+            <div className="text-[12px] font-semibold">改善候補（自動抽出）</div>
+            <PoweredBy component="Quick Index" />
+          </div>
+          <button className="text-[11px] px-2.5 py-1 rounded text-white flex items-center gap-1" style={{ background: '#1E1B4B' }}>
+            <Sparkles size={11} /> 全候補をバックログへ
+          </button>
+        </div>
+        <table className="w-full">
+          <thead>
+            <tr className="text-[10.5px] uppercase tracking-wider" style={{ color: '#A1A1AA' }}>
+              <th className="text-left font-medium px-5 py-2">時刻</th>
+              <th className="text-left font-medium py-2">質問</th>
+              <th className="text-left font-medium py-2">スコア</th>
+              <th className="text-left font-medium py-2">分類</th>
+              <th className="text-right font-medium py-2">類似回数</th>
+              <th className="text-right font-medium py-2 px-5"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {issues.map((iss, i) => (
+              <tr key={i} className="border-t" style={{ borderColor: '#F4F4F0' }}>
+                <td className="px-5 py-3 text-[11.5px] font-mono" style={{ fontFamily: '"JetBrains Mono", monospace', color: '#71717A' }}>{iss.time}</td>
+                <td className="py-3 text-[12px]" style={{ color: '#27272A' }}>{iss.q}</td>
+                <td className="py-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-12 h-1.5 rounded-full overflow-hidden" style={{ background: '#F4F4F0' }}>
+                      <div className="h-full rounded-full" style={{ width: `${iss.score}%`, background: scoreColor(iss.score) }} />
+                    </div>
+                    <span className="text-[11.5px] font-mono" style={{ fontFamily: '"JetBrains Mono", monospace' }}>{iss.score}</span>
+                  </div>
+                </td>
+                <td className="py-3"><span className="text-[10.5px] px-2 py-0.5 rounded" style={{ background: '#FEF3C7', color: '#92400E' }}>{iss.action}</span></td>
+                <td className="py-3 text-right text-[12px] font-mono font-semibold" style={{ fontFamily: '"JetBrains Mono", monospace' }}>{iss.count}</td>
+                <td className="py-3 px-5 text-right">
+                  <button className="text-[10.5px] px-2 py-0.5 rounded border" style={{ borderColor: '#E7E5DF', color: '#1E1B4B' }}>バックログへ</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function PlaceholderView({ label }) {
+  return (
+    <div className="flex items-center justify-center h-full text-[13px]" style={{ color: '#A1A1AA' }}>
+      {label}画面（モックでは省略）
+    </div>
+  );
+}
